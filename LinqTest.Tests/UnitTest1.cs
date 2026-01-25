@@ -27,5 +27,25 @@ namespace LinqTest.Tests
             var where = ls.Where(x => x % 2 == 0);
             Assert.Equal(2, where.Count());
         }
+
+        [Fact]
+        public void OrderBy_WhenIComparable_SuccessfullyOrdersAsc()
+        {
+            List<Person> people = [new Person("Larry"), new Person("Allison"), new Person("Sam")];
+            var sorted = people.OrderBy(p => p.Name);
+            Assert.Equal("Allison", sorted.ElementAt(0).Name);
+            Assert.Equal("Sam", sorted.ElementAt(2).Name);
+        }
+
+        [Fact]
+        public void OrderByDescending_WhenIComparable_SuccessfullyOrdersDesc()
+        {
+            List<Person> people = [new Person("Larry"), new Person("Allison"), new Person("Sam")];
+            var sorted = people.OrderByDescending(p => p.Name);
+            Assert.Equal("Sam", sorted.ElementAt(0).Name);
+            Assert.Equal("Allison", sorted.ElementAt(2).Name);
+        }
+
+        public record Person(string Name);
     }
 }
