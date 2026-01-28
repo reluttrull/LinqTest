@@ -48,7 +48,7 @@ namespace LinqTest
         public static T First<T>(this IEnumerable<T> collection)
         {
             if (collection.Count() == 0) throw new InvalidOperationException();
-            return collection.ElementAt(0);
+            return collection.ElementAt(0); // todo: implement ElementAt
         }
 
         public static T First<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
