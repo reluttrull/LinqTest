@@ -8,22 +8,18 @@ namespace LinqTest
         public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> collection,
             Func<TSource, TResult> transformation)
         {
-            List<TResult> result = [];
             foreach (TSource item in collection)
             {
-                result.Add(transformation(item));
+                yield return transformation(item);
             }
-            return result;
         }
 
         public static IEnumerable<T> Where<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
         {
-            List<T> result = [];
             foreach (T item in collection)
             {
-                if (predicate(item)) result.Add(item);
+                if (predicate(item)) yield return item;
             }
-            return result;
         }
 
         public static bool Any<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
