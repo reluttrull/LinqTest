@@ -1,10 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LinqTest
 {
     public static class MyLinq
     {
+
+        public static T ElementAt<T>(this IEnumerable<T> collection, int index)
+        {
+            if (index < 0 || index >= collection.Count()) { throw new ArgumentOutOfRangeException(); }
+
+            if (collection is IList<T> list)
+            {
+                return list[index];
+            }
+            using IEnumerator<T> enumerator = collection.GetEnumerator();
+            int i = 0;
+            while (enumerator.MoveNext())
+            {
+                if (i == index) return enumerator.Current;
+                i++;
+            }
+            throw new ArgumentOutOfRangeException(); // we shouldn't get here, but need to satisfy the compiler
+        }
+
         public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> collection,
             Func<TSource, TResult> transformation)
         {
@@ -60,7 +81,7 @@ namespace LinqTest
         public static T First<T>(this IEnumerable<T> collection)
         {
             if (collection.Count() == 0) throw new InvalidOperationException();
-            return collection.ElementAt(0); // todo: implement ElementAt
+            return collection.ElementAt(0);
         }
 
         public static T First<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
