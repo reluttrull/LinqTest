@@ -33,5 +33,27 @@ namespace LinqTest
             }
             return sum;
         }
+
+        public static int? Min(this IEnumerable<int> collection)
+        {
+            if (collection.Count() == 0) return null;
+            int min = int.MaxValue;
+            foreach (int num in collection)
+            {
+                if (num < min) min = num;
+            }
+            return min;
+        }
+
+        public static int? Max(this IEnumerable<int> collection)
+        {
+            if (collection.Count() == 0) return null;
+            int min = int.MinValue;
+            foreach (int num in collection)
+            {
+                if (num > min) min = num;
+            }
+            return min;
+        }
     }
 }

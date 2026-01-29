@@ -318,6 +318,38 @@ namespace LinqTest.Tests
             Assert.Equal(54321, count);
         }
 
+        [Fact]
+        public void Min_WhenEmpty_ReturnsNull()
+        {
+            List<int> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void Min_WhenNotEmpty_ReturnsSmallestInt()
+        {
+            List<int> ls = [1, 2, -3, 4];
+            var min = ls.Min();
+            Assert.Equal(-3, min);
+        }
+
+        [Fact]
+        public void Max_WhenEmpty_ReturnsNull()
+        {
+            List<int> ls = [];
+            var max = ls.Max();
+            Assert.Null(max);
+        }
+
+        [Fact]
+        public void Max_WhenNotEmpty_ReturnsLargestInt()
+        {
+            List<int> ls = [1, 2, 13, 4];
+            var max = ls.Max();
+            Assert.Equal(13, max);
+        }
+
         public record Person(string Name);
         public class ChildObj
         {
