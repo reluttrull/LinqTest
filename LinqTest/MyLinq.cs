@@ -77,6 +77,15 @@ namespace LinqTest
             }
         }
 
+        public static IEnumerable<T> TakeWhile<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
+        {
+            foreach (T item in collection)
+            {
+                if (predicate(item)) yield return item;
+                else break;
+            }
+        }
+
         public static IEnumerable<T> Skip<T>(this IEnumerable<T> collection, int count)
         {
             int skipCount = int.Clamp(count, 0, collection.Count());

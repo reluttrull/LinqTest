@@ -64,6 +64,31 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void TakeWhile_WhenAllMeetCondition_ReturnsAllInCollection()
+        {
+            List<int> nums = [1, 2, 3, 4, 5, 6];
+            var take = nums.TakeWhile(n => n < 7);
+            Assert.Equal(6, take.Count());
+        }
+
+        [Fact]
+        public void TakeWhile_WhenNoneMeetCondition_ReturnsEmptyCollection()
+        {
+            List<int> nums = [1, 2, 3, 4, 5, 6];
+            var take = nums.TakeWhile(n => n > 7);
+            Assert.Empty(take);
+        }
+
+        [Fact]
+        public void TakeWhile_WhenSomeMeetCondition_ReturnsOnlyUpToThatPoint()
+        {
+            List<int> nums = [1, 2, 3, 4, 5, 6];
+            var take = nums.TakeWhile(n => n < 4);
+            Assert.Equal(3, take.Count());
+            Assert.Equal(1, take.ElementAt(0));
+        }
+
+        [Fact]
         public void Skip_WhenCountLargerThanCollection_ReturnsEmpty()
         {
             List<int> nums = [1, 2, 3, 4, 5, 6];
