@@ -1,9 +1,34 @@
 ﻿using LinqTest;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LinqTest.Tests
 {
+    [ExcludeFromCodeCoverage]
     public class UnitTest1
     {
+        [Fact]
+        public void ElementAt_WhenIndexLessThanZero_ThrowsException()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var caughtException = Assert.Throws<ArgumentOutOfRangeException>(() => ls.ElementAt(-1));
+        }
+
+        [Fact]
+        public void ElementAt_WhenIndexTooBig_ThrowsException()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var caughtException = Assert.Throws<ArgumentOutOfRangeException>(() => ls.ElementAt(5));
+        }
+
+        [Fact]
+        public void ElementAt_WhenCollectionNotIList_ReturnsElementAtIndex()
+        {
+            ReadOnlyCollection<int> coll = [1, 2, 3, 4, 5];
+            int element = coll.ElementAt(3);
+            Assert.Equal(4, element);
+        }
+
         [Fact]
         public void Select_WhenTResultAndTSourceEqual_SuccessfullyTransforms()
         {
@@ -52,6 +77,69 @@ namespace LinqTest.Tests
             List<int> ls = [1, 2, 3, 4, 5];
             var where = ls.Where(x => x % 2 == 0);
             Assert.Equal(2, where.Count());
+        }
+
+        [Fact]
+        public void Any_WhenNoneMatchPredicate_ReturnsFalse()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var any = ls.Any(x => x > 5);
+            Assert.False(any);
+        }
+
+        [Fact]
+        public void Any_WhenAtLeastOneMatchesPredicate_ReturnsTrue()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var any = ls.Any(x => x % 2 == 0);
+            Assert.True(any);
+        }
+
+        [Fact]
+        public void First_WhenCollectionEmpty_ThrowsException()
+        {
+            List<int> ls = [];
+            var caughtException = Assert.Throws<InvalidOperationException>(() => ls.First());
+        }
+
+        [Fact]
+        public void First_WhenCollectionNotEmpty_ReturnsFirstItem()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var first = ls.First();
+            Assert.Equal(1, first);
+        }
+
+        [Fact]
+        public void First_WhenPredicatePassedIn_AppliesFilterFirst()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var first = ls.First(x => x > 2);
+            Assert.Equal(3, first);
+        }
+
+        [Fact]
+        public void FirstOrDefault_WhenCollectionEmpty_ReturnsNull()
+        {
+            List<string> ls = [];
+            var first = ls.FirstOrDefault();
+            Assert.Null(first);
+        }
+
+        [Fact]
+        public void FirstOrDefault_WhenCollectionNotEmpty_ReturnsFirstItem()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var first = ls.FirstOrDefault();
+            Assert.Equal(1, first);
+        }
+
+        [Fact]
+        public void FirstOrDefault_WhenPredicatePassedIn_AppliesFilterFirst()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var first = ls.FirstOrDefault(x => x > 2);
+            Assert.Equal(3, first);
         }
 
         [Fact]
