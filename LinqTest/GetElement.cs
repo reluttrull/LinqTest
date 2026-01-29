@@ -24,6 +24,24 @@ namespace LinqTest
             throw new ArgumentOutOfRangeException(); // we shouldn't get here, but need to satisfy the compiler
         }
 
+        public static T? ElementAtOrDefault<T>(this IEnumerable<T> collection, int index)
+        {
+            if (index < 0 || index >= collection.Count()) return default(T);
+
+            if (collection is IList<T> list)
+            {
+                return list[index];
+            }
+            using IEnumerator<T> enumerator = collection.GetEnumerator();
+            int i = 0;
+            while (enumerator.MoveNext())
+            {
+                if (i == index) return enumerator.Current;
+                i++;
+            }
+            return default(T); // we shouldn't get here, but need to satisfy the compiler
+        }
+
         public static T First<T>(this IEnumerable<T> collection)
         {
             if (collection.Count() == 0) throw new InvalidOperationException();

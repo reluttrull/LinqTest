@@ -14,6 +14,16 @@ namespace LinqTest
             return (double)sum / (double)collection.Count();
         }
 
+        public static int Count<T>(this IEnumerable<T> collection)
+        {
+            int count = 0;
+            foreach (var item in collection)
+            {
+                count++; 
+            }
+            return count;
+        }
+
         public static long Sum(this IEnumerable<int> collection)
         {
             long sum = 0;

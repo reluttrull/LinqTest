@@ -30,6 +30,30 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void ElementAtOrDefault_WhenIndexLessThanZero_ReturnsNull()
+        {
+            List<string> ls = ["1", "2"];
+            var element = ls.ElementAtOrDefault(-1);
+            Assert.Null(element);
+        }
+
+        [Fact]
+        public void ElementAtOrDefault_WhenIndexTooBig_ReturnsNull()
+        {
+            List<string> ls = ["1", "2"];
+            var element = ls.ElementAtOrDefault(3);
+            Assert.Null(element);
+        }
+
+        [Fact]
+        public void ElementAtOrDefault_WhenCollectionNotIList_ReturnsElementAtIndex()
+        {
+            ReadOnlyCollection<int> coll = [1, 2, 3, 4, 5];
+            int element = coll.ElementAtOrDefault(3);
+            Assert.Equal(4, element);
+        }
+
+        [Fact]
         public void Select_WhenTResultAndTSourceEqual_SuccessfullyTransforms()
         {
             List<int> ls = [1, 2, 3, 4, 5];
@@ -276,6 +300,22 @@ namespace LinqTest.Tests
             List<int> nums = [];
             var avg = nums.Average();
             Assert.Equal(0, avg);
+        }
+
+        [Fact]
+        public void Count_WhenEmpty_ReturnsZero()
+        {
+            List<Person> ls = [];
+            var count = ls.Count();
+            Assert.Equal(0, count);
+        }
+
+        [Fact]
+        public void Count_WhenLargeNumberOfItems_ReturnsCorrectNumber()
+        {
+            List<Person> ls = [..Enumerable.Repeat(new Person("name"), 54321)];
+            var count = ls.Count();
+            Assert.Equal(54321, count);
         }
 
         public record Person(string Name);
