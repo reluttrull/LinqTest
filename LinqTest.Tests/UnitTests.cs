@@ -24,9 +24,9 @@ namespace LinqTest.Tests
         [Fact]
         public void ElementAt_WhenCollectionNotIList_ReturnsElementAtIndex()
         {
-            ReadOnlyCollection<int> coll = [1, 2, 3, 4, 5];
-            int element = coll.ElementAt(3);
-            Assert.Equal(4, element);
+            string str = "123";
+            int element = str.ElementAt(1);
+            Assert.Equal('2', element);
         }
 
         [Fact]
@@ -48,9 +48,9 @@ namespace LinqTest.Tests
         [Fact]
         public void ElementAtOrDefault_WhenCollectionNotIList_ReturnsElementAtIndex()
         {
-            ReadOnlyCollection<int> coll = [1, 2, 3, 4, 5];
-            int element = coll.ElementAtOrDefault(3);
-            Assert.Equal(4, element);
+            string str = "123";
+            int element = str.ElementAtOrDefault(1);
+            Assert.Equal('2', element);
         }
 
         [Fact]
@@ -273,7 +273,7 @@ namespace LinqTest.Tests
         [Fact]
         public void Sum_WhenMultipleInts_ReturnsCorrectSum()
         {
-            List<int> nums = [.. Enumerable.Repeat(500, 10)];
+            List<int> nums = [.. Range.Repeat(500, 10)];
             var sum = nums.Sum();
             Assert.Equal(5000, sum);
         }
@@ -313,7 +313,7 @@ namespace LinqTest.Tests
         [Fact]
         public void Count_WhenLargeNumberOfItems_ReturnsCorrectNumber()
         {
-            List<Person> ls = [..Enumerable.Repeat(new Person("name"), 54321)];
+            List<Person> ls = [..Range.Repeat(new Person("name"), 54321)];
             var count = ls.Count();
             Assert.Equal(54321, count);
         }

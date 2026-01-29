@@ -6,6 +6,12 @@ namespace LinqTest
 {
     public static class Range
     {
+        public static IEnumerable<T> Repeat<T>(T element, int count)
+        {
+            T[] arr = new T[count];
+            Array.Fill<T>(arr, element);
+            return arr;
+        }
         public static IEnumerable<T> Take<T>(this IEnumerable<T> collection, int count)
         {
             int index = 0;
