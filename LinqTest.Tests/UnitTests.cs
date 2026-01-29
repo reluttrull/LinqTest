@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace LinqTest.Tests
 {
     [ExcludeFromCodeCoverage]
-    public class UnitTest1
+    public class UnitTests
     {
         [Fact]
         public void ElementAt_WhenIndexLessThanZero_ThrowsException()
@@ -244,6 +244,38 @@ namespace LinqTest.Tests
             var skip = nums.Skip(-1);
             Assert.Equal(6, skip.Count());
             Assert.Equal(1, skip.ElementAt(0));
+        }
+
+        [Fact]
+        public void Sum_WhenMultipleInts_ReturnsCorrectSum()
+        {
+            List<int> nums = [.. Enumerable.Repeat(500, 10)];
+            var sum = nums.Sum();
+            Assert.Equal(5000, sum);
+        }
+
+        [Fact]
+        public void Sum_WhenEmpty_ReturnsZero()
+        {
+            List<int> nums = [];
+            var sum = nums.Sum();
+            Assert.Equal(0, sum);
+        }
+
+        [Fact]
+        public void Average_WhenMultipleIntsAndNonIntegerResult_ReturnsCorrectAverage()
+        {
+            List<int> nums = [1, 2];
+            var avg = nums.Average();
+            Assert.Equal(1.5, avg);
+        }
+
+        [Fact]
+        public void Average_WhenEmpty_ReturnsZero()
+        {
+            List<int> nums = [];
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
         }
 
         public record Person(string Name);
