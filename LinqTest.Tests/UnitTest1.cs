@@ -21,6 +21,32 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void SelectMany_WhenDifferentTResultAndTSource_ReturnsCorrectType()
+        {
+            List<ParentObj> ls = [
+                new() {
+                    Children = [
+                        new() {
+                            Property = "asdf"
+                        },
+                        new() {
+                            Property = "jkl;"
+                        }
+                    ]
+                },
+                new() {
+                    Children = [
+                        new() {
+                            Property = "123"
+                        }
+                    ]
+                }
+            ];
+            var select = ls.SelectMany(x => x.Children);
+            Assert.Equal(3, select.Count());
+        }
+
+        [Fact]
         public void Where_WhenFiltered_SuccessfullyFilters()
         {
             List<int> ls = [1, 2, 3, 4, 5];
@@ -115,5 +141,15 @@ namespace LinqTest.Tests
         }
 
         public record Person(string Name);
+        public class ChildObj
+        {
+            public int Id { get; set; }
+            public string Property { get; set; } = string.Empty;
+        }
+        public class ParentObj
+        {
+            public int Id { get; set; }
+            public List<ChildObj> Children { get; set; } = [];
+        }
     }
 }

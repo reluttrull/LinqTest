@@ -14,6 +14,18 @@ namespace LinqTest
             }
         }
 
+        public static IEnumerable<TResult> SelectMany<TSource, TResult>(this IEnumerable<TSource> collection,
+            Func<TSource, IEnumerable<TResult>> transformation)
+        {
+            foreach (TSource item in collection)
+            {
+                foreach (TResult resultItem in transformation(item))
+                {
+                    yield return resultItem; 
+                }
+            }
+        }
+
         public static IEnumerable<T> Where<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
         {
             foreach (T item in collection)
