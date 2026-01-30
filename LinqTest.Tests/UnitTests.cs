@@ -167,6 +167,51 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void Single_WhenMultipleMatches_ThrowsException()
+        {
+            List<string> ls = ["abc", "def", "abc"];
+            var caughtException = Assert.Throws<InvalidOperationException>(() => ls.Single(x => x == "abc"));
+        }
+
+        [Fact]
+        public void Single_WhenNoMatches_ThrowsException()
+        {
+            List<string> ls = ["abc", "def", "abc"];
+            var caughtException = Assert.Throws<InvalidOperationException>(() => ls.Single(x => x == string.Empty));
+        }
+
+        [Fact]
+        public void Single_WhenOneMatch_ReturnsMatch()
+        {
+            List<string> ls = ["abc", "def", "abc"];
+            var single = ls.Single(x => x == "def");
+            Assert.Equal("def", single);
+        }
+
+        [Fact]
+        public void SingleOrDefault_WhenMultipleMatches_ThrowsException()
+        {
+            List<string> ls = ["abc", "def", "abc"];
+            var caughtException = Assert.Throws<InvalidOperationException>(() => ls.SingleOrDefault(x => x == "abc"));
+        }
+
+        [Fact]
+        public void SingleOrDefault_WhenNoMatches_ReturnsNull()
+        {
+            List<string> ls = ["abc", "def", "abc"];
+            var single = ls.SingleOrDefault(x => x == string.Empty);
+            Assert.Null(single);
+        }
+
+        [Fact]
+        public void SingleOrDefault_WhenOneMatch_ReturnsMatch()
+        {
+            List<string> ls = ["abc", "def", "abc"];
+            var single = ls.SingleOrDefault(x => x == "def");
+            Assert.Equal("def", single);
+        }
+
+        [Fact]
         public void GroupBy_WhenSplitIntoTwoGroups_ShouldReturnTwoGroupings()
         {
             List<int> ls = [0, 1, 1, 0, 1];

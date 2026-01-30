@@ -63,5 +63,19 @@ namespace LinqTest
         {
             return collection.Where(predicate).FirstOrDefault();
         }
+
+        public static T Single<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
+        {
+            var matches = collection.Where(predicate);
+            if (matches.Count() > 1) throw new InvalidOperationException();
+            return matches.First();
+        }
+
+        public static T? SingleOrDefault<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
+        {
+            var matches = collection.Where(predicate);
+            if (matches.Count() > 1) throw new InvalidOperationException();
+            return matches.FirstOrDefault();
+        }
     }
 }
