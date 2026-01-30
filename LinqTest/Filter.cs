@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace LinqTest
 {
@@ -36,6 +37,17 @@ namespace LinqTest
         {
             if (collection.Count() == 0) return false;
             return collection.Any(i => i?.Equals(item) ?? (item is null));
+        }
+
+        public static IEnumerable<T> Distinct<T>(this IEnumerable<T> collection)
+        {
+            Dictionary<int, T> dict = [];
+            foreach (T item in collection)
+            {
+                int key = item?.GetHashCode() ?? 0;
+                dict.TryAdd(key, item);
+            }
+            return dict.Values;
         }
     }
 }

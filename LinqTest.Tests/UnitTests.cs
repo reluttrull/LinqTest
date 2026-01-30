@@ -143,7 +143,7 @@ namespace LinqTest.Tests
                 new ChildObj() { Id = 1, Property = "asdf" },
                 new ChildObj() { Id = 2, Property = "jkl;" }
             ];
-            var contains = ls.Contains(new ChildObj() { Id = 2, Property = "jkl;" });
+            var contains = ls.Contains<ChildObj>(new ChildObj() { Id = 2, Property = "jkl;" });
             Assert.True(contains);
         }
 
@@ -154,7 +154,7 @@ namespace LinqTest.Tests
                 new ChildObj() { Id = 1, Property = "asdf" },
                 new ChildObj() { Id = 2, Property = "jkl;" }
             ];
-            var contains = ls.Contains(new ChildObj() { Id = 2, Property = "asdf" });
+            var contains = ls.Contains<ChildObj>(new ChildObj() { Id = 2, Property = "asdf" });
             Assert.False(contains);
         }
 
@@ -432,6 +432,27 @@ namespace LinqTest.Tests
             List<int> ls = [1, 2, 13, 4];
             var max = ls.Max();
             Assert.Equal(13, max);
+        }
+
+        [Fact]
+        public void Distinct_WhenDuplicates_SkipsDuplicates()
+        {
+            List<ChildObj> ls = [
+                new ChildObj() { Id = 2, Property = "jkl;" },
+                new ChildObj() { Id = 1, Property = "asdf" },
+                new ChildObj() { Id = 2, Property = "jkl;" },
+                new ChildObj() { Id = 2, Property = "jkl;" }
+            ];
+            var distinct = ls.Distinct();
+            Assert.Equal(2, distinct.Count());
+        }
+
+        [Fact]
+        public void Distinct_WhenEmpty_ReturnsEmpty()
+        {
+            List<ChildObj> ls = [];
+            var distinct = ls.Distinct();
+            Assert.Empty(distinct);
         }
 
         public record Person(string Name);
