@@ -31,5 +31,11 @@ namespace LinqTest
             }
             return true;
         }
+
+        public static bool Contains<T>(this IEnumerable<T> collection, T item)
+        {
+            if (collection.Count() == 0) return false;
+            return collection.Any(i => i?.Equals(item) ?? (item is null));
+        }
     }
 }

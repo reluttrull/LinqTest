@@ -137,6 +137,28 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void Contains_WhenContainsItem_ReturnsTrue()
+        {
+            List<ChildObj> ls = [
+                new ChildObj() { Id = 1, Property = "asdf" },
+                new ChildObj() { Id = 2, Property = "jkl;" }
+            ];
+            var contains = ls.Contains(new ChildObj() { Id = 2, Property = "jkl;" });
+            Assert.True(contains);
+        }
+
+        [Fact]
+        public void Contains_WhenDoesNotContainItem_ReturnsFalse()
+        {
+            List<ChildObj> ls = [
+                new ChildObj() { Id = 1, Property = "asdf" },
+                new ChildObj() { Id = 2, Property = "jkl;" }
+            ];
+            var contains = ls.Contains(new ChildObj() { Id = 2, Property = "asdf" });
+            Assert.False(contains);
+        }
+
+        [Fact]
         public void First_WhenCollectionEmpty_ThrowsException()
         {
             List<int> ls = [];
@@ -413,10 +435,27 @@ namespace LinqTest.Tests
         }
 
         public record Person(string Name);
-        public class ChildObj
+        public class ChildObj : IEquatable<ChildObj>
         {
             public int Id { get; set; }
             public string Property { get; set; } = string.Empty;
+
+            public bool Equals(ChildObj? other)
+            {
+                return other is not null
+                    && Id == other.Id
+                    && Property == other.Property;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return Equals(obj as ChildObj);
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(Id, Property);
+            }
         }
         public class ParentObj
         {
