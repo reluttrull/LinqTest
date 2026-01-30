@@ -16,7 +16,20 @@ namespace LinqTest
 
         public static bool Any<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
         {
-            return collection.Where(predicate).Count() > 0;
+            foreach (T item in collection)
+            {
+                if (predicate(item)) return true;
+            }
+            return false;
+        }
+
+        public static bool All<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
+        {
+            foreach (T item in collection)
+            {
+                if (!predicate(item)) return false;
+            }
+            return true;
         }
     }
 }

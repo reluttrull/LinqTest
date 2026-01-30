@@ -119,6 +119,23 @@ namespace LinqTest.Tests
             Assert.True(any);
         }
 
+
+        [Fact]
+        public void All_WhenOnlySomeMatchPredicate_ReturnsFalse()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var all = ls.All(x => x > 2);
+            Assert.False(all);
+        }
+
+        [Fact]
+        public void All_WhenAllMatchPredicate_ReturnsTrue()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var all = ls.All(x => x > 0);
+            Assert.True(all);
+        }
+
         [Fact]
         public void First_WhenCollectionEmpty_ThrowsException()
         {
