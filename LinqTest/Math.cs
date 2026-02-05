@@ -24,13 +24,78 @@ namespace LinqTest
             return count;
         }
 
-        // todo: this should really return int32 and throw an OverflowException if too big
-        public static long Sum(this IEnumerable<int> collection)
+        public static Int32 Sum(this IEnumerable<Int32> collection)
         {
-            long sum = 0;
-            foreach (int num in collection)
+            Int32 sum = 0;
+            foreach (Int32 num in collection)
+            {
+                try
+                {
+                    checked
+                    {
+                        sum += num;
+                    }
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine(e.Message);
+                    throw;
+                }
+            }
+            return sum;
+        }
+        public static Int64 Sum(this IEnumerable<Int64> collection)
+        {
+            Int64 sum = 0;
+            foreach (Int64 num in collection)
+            {
+                try
+                {
+                    checked
+                    {
+                        sum += num;
+                    }
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine(e.Message);
+                    throw;
+                }
+            }
+            return sum;
+        }
+        public static Single Sum(this IEnumerable<Single> collection)
+        {
+            Single sum = 0;
+            foreach (Single num in collection)
             {
                 sum += num;
+            }
+            return Single.IsInfinity(sum) ? throw new OverflowException() : sum;
+        }
+        public static Double Sum(this IEnumerable<Double> collection)
+        {
+            Double sum = 0;
+            foreach (Double num in collection)
+            {
+                sum += num;
+            }
+            return Double.IsInfinity(sum) ? throw new OverflowException() : sum;
+        }
+        public static Decimal Sum(this IEnumerable<Decimal> collection)
+        {
+            Decimal sum = 0;
+            foreach (Decimal num in collection)
+            {
+                try
+                {
+                        sum += num;
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine(e.Message);
+                    throw;
+                }
             }
             return sum;
         }

@@ -355,19 +355,118 @@ namespace LinqTest.Tests
         }
 
         [Fact]
-        public void Sum_WhenMultipleInts_ReturnsCorrectSum()
+        public void SumInt32_WhenMultiple_ReturnsCorrectSum()
         {
-            List<int> nums = [.. Range.Repeat(500, 10)];
+            List<Int32> nums = [.. Range.Repeat(500, 10)];
             var sum = nums.Sum();
             Assert.Equal(5000, sum);
         }
 
         [Fact]
-        public void Sum_WhenEmpty_ReturnsZero()
+        public void SumInt32_WhenEmpty_ReturnsZero()
         {
-            List<int> nums = [];
+            List<Int32> nums = [];
             var sum = nums.Sum();
             Assert.Equal(0, sum);
+        }
+
+        [Fact]
+        public void SumInt32_WhenTooBig_ThrowsOverflow()
+        {
+            List<Int32> nums = [.. Range.Repeat(Int32.MaxValue, 3)];
+            var caughtException = Assert.Throws<OverflowException>(() => nums.Sum());
+        }
+
+        [Fact]
+        public void SumInt64_WhenMultiple_ReturnsCorrectSum()
+        {
+            List<Int64> nums = [.. Range.Repeat(500, 10)];
+            var sum = nums.Sum();
+            Assert.Equal(5000, sum);
+        }
+
+        [Fact]
+        public void SumInt64_WhenEmpty_ReturnsZero()
+        {
+            List<Int64> nums = [];
+            var sum = nums.Sum();
+            Assert.Equal(0, sum);
+        }
+
+        [Fact]
+        public void SumInt64_WhenTooBig_ThrowsOverflow()
+        {
+            List<Int64> nums = [.. Range.Repeat(Int64.MaxValue, 3)];
+            var caughtException = Assert.Throws<OverflowException>(() => nums.Sum());
+        }
+
+        [Fact]
+        public void SumSingle_WhenMultiple_ReturnsCorrectSum()
+        {
+            List<Single> nums = [.. Range.Repeat(500, 10)];
+            var sum = nums.Sum();
+            Assert.Equal(5000, sum);
+        }
+
+        [Fact]
+        public void SumSingle_WhenEmpty_ReturnsZero()
+        {
+            List<Single> nums = [];
+            var sum = nums.Sum();
+            Assert.Equal(0, sum);
+        }
+
+        [Fact]
+        public void SumSingle_WhenTooBig_ThrowsOverflow()
+        {
+            List<Single> nums = [.. Range.Repeat(Single.MaxValue, 3)];
+            var caughtException = Assert.Throws<OverflowException>(() => nums.Sum());
+        }
+
+        [Fact]
+        public void SumDouble_WhenMultiple_ReturnsCorrectSum()
+        {
+            List<Double> nums = [.. Range.Repeat(500, 10)];
+            var sum = nums.Sum();
+            Assert.Equal(5000, sum);
+        }
+
+        [Fact]
+        public void SumDouble_WhenEmpty_ReturnsZero()
+        {
+            List<Double> nums = [];
+            var sum = nums.Sum();
+            Assert.Equal(0, sum);
+        }
+
+        [Fact]
+        public void SumDouble_WhenTooBig_ThrowsOverflow()
+        {
+            List<Double> nums = [.. Range.Repeat(Double.MaxValue, 3)];
+            var caughtException = Assert.Throws<OverflowException>(() => nums.Sum());
+        }
+
+        [Fact]
+        public void SumDecimal_WhenMultiple_ReturnsCorrectSum()
+        {
+            List<Decimal> nums = [.. Range.Repeat(500, 10)];
+            var sum = nums.Sum();
+            Assert.Equal(5000, sum);
+        }
+
+        [Fact]
+        public void SumDecimal_WhenEmpty_ReturnsZero()
+        {
+            List<Decimal> nums = [];
+            var sum = nums.Sum();
+            Assert.Equal(0, sum);
+        }
+
+        [Fact]
+        public void SumDecimal_WhenTooBig_ThrowsOverflow()
+        {
+            List<Decimal> nums = [.. Range.Repeat(Decimal.MaxValue, 3)];
+            var caughtException = Assert.Throws<OverflowException>(() => nums.Sum());
         }
 
         [Fact]
