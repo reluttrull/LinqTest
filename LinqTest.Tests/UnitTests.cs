@@ -403,19 +403,99 @@ namespace LinqTest.Tests
         }
 
         [Fact]
-        public void Min_WhenEmpty_ReturnsNull()
+        public void MinInt32_WhenEmpty_ReturnsNull()
         {
-            List<int> ls = [];
+            List<Int32> ls = [];
             var min = ls.Min();
             Assert.Null(min);
         }
 
         [Fact]
-        public void Min_WhenNotEmpty_ReturnsSmallestInt()
+        public void MinInt32_WhenNotEmpty_ReturnsSmallestInt32()
         {
-            List<int> ls = [1, 2, -3, 4];
+            List<Int32> ls = [1, 2, -3, 4];
             var min = ls.Min();
             Assert.Equal(-3, min);
+        }
+
+        [Fact]
+        public void MinInt64_WhenEmpty_ReturnsNull()
+        {
+            List<Int64> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinInt64_WhenNotEmpty_ReturnsSmallestInt64()
+        {
+            List<Int64> ls = [1, 2, -3, 4];
+            var min = ls.Min();
+            Assert.Equal(-3, min);
+        }
+
+        [Fact]
+        public void MinSingle_WhenEmpty_ReturnsNull()
+        {
+            List<Single> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinSingle_WhenNotEmpty_ReturnsSmallestSingle()
+        {
+            List<Single> ls = [1, 2, -3, 4];
+            var min = ls.Min();
+            Assert.Equal(-3, min);
+        }
+
+        [Fact]
+        public void MinDouble_WhenEmpty_ReturnsNull()
+        {
+            List<Double> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinDouble_WhenNotEmpty_ReturnsSmallestDouble()
+        {
+            List<Double> ls = [1, 2.5, -3, 4];
+            var min = ls.Min();
+            Assert.Equal(-3, min);
+        }
+
+        [Fact]
+        public void MinDecimal_WhenEmpty_ReturnsNull()
+        {
+            List<Decimal> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinDecimal_WhenNotEmpty_ReturnsSmallestDecimal()
+        {
+            List<Decimal> ls = [1, 2.5m, -3, 4];
+            var min = ls.Min();
+            Assert.Equal(-3, min);
+        }
+
+        [Fact]
+        public void MinString_WhenEmpty_ReturnsNull()
+        {
+            List<string> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinString_WhenNotEmpty_ReturnsSmallestString()
+        {
+            List<string> ls = ["asdf", "0123", "jkl;"];
+            var min = ls.Min();
+            Assert.Equal("0123", min);
         }
 
         [Fact]

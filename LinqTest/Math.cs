@@ -24,6 +24,7 @@ namespace LinqTest
             return count;
         }
 
+        // todo: this should really return int32 and throw an OverflowException if too big
         public static long Sum(this IEnumerable<int> collection)
         {
             long sum = 0;
@@ -34,13 +35,64 @@ namespace LinqTest
             return sum;
         }
 
-        public static int? Min(this IEnumerable<int> collection)
+        public static Int32? Min(this IEnumerable<Int32> collection)
         {
             if (collection.Count() == 0) return null;
-            int min = int.MaxValue;
-            foreach (int num in collection)
+            Int32 min = Int32.MaxValue;
+            foreach (Int32 num in collection)
             {
                 if (num < min) min = num;
+            }
+            return min;
+        }
+        public static Int64? Min(this IEnumerable<Int64> collection)
+        {
+            if (collection.Count() == 0) return null;
+            Int64 min = Int64.MaxValue;
+            foreach (Int64 num in collection)
+            {
+                if (num < min) min = num;
+            }
+            return min;
+        }
+        public static Single? Min(this IEnumerable<Single> collection)
+        {
+            if (collection.Count() == 0) return null;
+            Single min = Single.MaxValue;
+            foreach (Single num in collection)
+            {
+                if (num < min) min = num;
+            }
+            return min;
+        }
+        public static Double? Min(this IEnumerable<Double> collection)
+        {
+            if (collection.Count() == 0) return null;
+            Double min = Double.MaxValue;
+            foreach (Double num in collection)
+            {
+                if (num < min) min = num;
+            }
+            return min;
+        }
+        public static Decimal? Min(this IEnumerable<Decimal> collection)
+        {
+            if (collection.Count() == 0) return null;
+            Decimal min = Decimal.MaxValue;
+            foreach (Decimal num in collection)
+            {
+                if (num < min) min = num;
+            }
+            return min;
+        }
+        public static T? Min<T>(this IEnumerable<T> collection)
+            where T : IComparable
+        {
+            if (collection.Count() == 0) return default(T);
+            T min = collection.ElementAt(0);
+            foreach (T item in collection)
+            {
+                if (item.CompareTo(min) < 0) min = item;
             }
             return min;
         }
