@@ -499,19 +499,99 @@ namespace LinqTest.Tests
         }
 
         [Fact]
-        public void Max_WhenEmpty_ReturnsNull()
+        public void MaxInt32_WhenEmpty_ReturnsNull()
         {
-            List<int> ls = [];
+            List<Int32> ls = [];
             var max = ls.Max();
             Assert.Null(max);
         }
 
         [Fact]
-        public void Max_WhenNotEmpty_ReturnsLargestInt()
+        public void MaxInt32_WhenNotEmpty_ReturnsLargestValue()
         {
-            List<int> ls = [1, 2, 13, 4];
+            List<Int32> ls = [1, 2, 13, 4];
             var max = ls.Max();
             Assert.Equal(13, max);
+        }
+
+        [Fact]
+        public void MaxInt64_WhenEmpty_ReturnsNull()
+        {
+            List<Int64> ls = [];
+            var max = ls.Max();
+            Assert.Null(max);
+        }
+
+        [Fact]
+        public void MaxInt64_WhenNotEmpty_ReturnsLargestValue()
+        {
+            List<Int64> ls = [1, 2, 13, 4];
+            var max = ls.Max();
+            Assert.Equal(13, max);
+        }
+
+        [Fact]
+        public void MaxSingle_WhenEmpty_ReturnsNull()
+        {
+            List<Single> ls = [];
+            var max = ls.Max();
+            Assert.Null(max);
+        }
+
+        [Fact]
+        public void MaxSingle_WhenNotEmpty_ReturnsLargestValue()
+        {
+            List<Single> ls = [1, 2, 13, 4];
+            var max = ls.Max();
+            Assert.Equal(13, max);
+        }
+
+        [Fact]
+        public void MaxDouble_WhenEmpty_ReturnsNull()
+        {
+            List<Double> ls = [];
+            var max = ls.Max();
+            Assert.Null(max);
+        }
+
+        [Fact]
+        public void MaxDouble_WhenNotEmpty_ReturnsLargestValue()
+        {
+            List<Double> ls = [1, 2.5, 13, 4];
+            var max = ls.Max();
+            Assert.Equal(13, max);
+        }
+
+        [Fact]
+        public void MaxDecimal_WhenEmpty_ReturnsNull()
+        {
+            List<Decimal> ls = [];
+            var max = ls.Max();
+            Assert.Null(max);
+        }
+
+        [Fact]
+        public void MaxDecimal_WhenNotEmpty_ReturnsLargestValue()
+        {
+            List<Decimal> ls = [1, 2.5m, 13, 4];
+            var max = ls.Max();
+            Assert.Equal(13, max);
+        }
+
+        [Fact]
+        public void MaxString_WhenEmpty_ReturnsNull()
+        {
+            List<string> ls = [];
+            var max = ls.Max();
+            Assert.Null(max);
+        }
+
+        [Fact]
+        public void MaxString_WhenNotEmpty_ReturnsLargestValue()
+        {
+            List<string> ls = ["asdf", "0123", "jkl;"];
+            var max = ls.Max();
+            Assert.Equal("jkl;", max);
         }
 
         [Fact]

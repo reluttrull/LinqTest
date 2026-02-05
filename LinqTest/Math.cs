@@ -97,15 +97,66 @@ namespace LinqTest
             return min;
         }
 
-        public static int? Max(this IEnumerable<int> collection)
+        public static Int32? Max(this IEnumerable<Int32> collection)
         {
             if (collection.Count() == 0) return null;
-            int min = int.MinValue;
-            foreach (int num in collection)
+            Int32 max = Int32.MinValue;
+            foreach (Int32 num in collection)
             {
-                if (num > min) min = num;
+                if (num > max) max = num;
             }
-            return min;
+            return max;
+        }
+        public static Int64? Max(this IEnumerable<Int64> collection)
+        {
+            if (collection.Count() == 0) return null;
+            Int64 max = Int64.MinValue;
+            foreach (Int64 num in collection)
+            {
+                if (num > max) max = num;
+            }
+            return max;
+        }
+        public static Single? Max(this IEnumerable<Single> collection)
+        {
+            if (collection.Count() == 0) return null;
+            Single max = Single.MinValue;
+            foreach (Single num in collection)
+            {
+                if (num > max) max = num;
+            }
+            return max;
+        }
+        public static Double? Max(this IEnumerable<Double> collection)
+        {
+            if (collection.Count() == 0) return null;
+            Double max = Double.MinValue;
+            foreach (Double num in collection)
+            {
+                if (num > max) max = num;
+            }
+            return max;
+        }
+        public static Decimal? Max(this IEnumerable<Decimal> collection)
+        {
+            if (collection.Count() == 0) return null;
+            Decimal max = Decimal.MinValue;
+            foreach (Decimal num in collection)
+            {
+                if (num > max) max = num;
+            }
+            return max;
+        }
+        public static T? Max<T>(this IEnumerable<T> collection)
+            where T : IComparable
+        {
+            if (collection.Count() == 0) return default(T);
+            T max = collection.ElementAt(0);
+            foreach (T item in collection)
+            {
+                if (item.CompareTo(max) > 0) max = item;
+            }
+            return max;
         }
     }
 }
