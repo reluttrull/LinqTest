@@ -7,11 +7,40 @@ namespace LinqTest
 {
     public static class Math
     {
-        public static double Average(this IEnumerable<int> collection)
+        public static double Average(this IEnumerable<Int32> collection)
         {
             if (collection is null || collection.Count() == 0) return 0;
             long sum = collection.Sum();
             return (double)sum / (double)collection.Count();
+        }
+        public static double Average(this IEnumerable<Int64> collection)
+        {
+            if (collection is null || collection.Count() == 0) return 0;
+            long sum = collection.Sum();
+            return (double)sum / (double)collection.Count();
+        }
+        public static float Average(this IEnumerable<Single> collection)
+        {
+            if (collection is null || collection.Count() == 0) return 0;
+            float sum = collection.Sum();
+            return sum / collection.Count();
+        }
+        public static double Average(this IEnumerable<Double> collection)
+        {
+            if (collection is null || collection.Count() == 0) return 0;
+            double sum = 0;
+            foreach (double num in collection)
+            {
+                sum += num;
+            }
+            if (Double.IsPositiveInfinity(sum)) return sum; // don't bother dividing if overflow
+            return sum / collection.Count();
+        }
+        public static decimal Average(this IEnumerable<Decimal> collection)
+        {
+            if (collection is null || collection.Count() == 0) return 0;
+            decimal sum = collection.Sum();
+            return sum / collection.Count();
         }
 
         public static int Count<T>(this IEnumerable<T> collection)

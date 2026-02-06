@@ -123,11 +123,81 @@ namespace LinqTest.Tests
         }
 
         [Fact]
-        public void Average_WhenMultipleIntsAndNonIntegerResult_ReturnsCorrectAverage()
+        public void AverageInt32_WhenMultipleAndNonIntegerResult_ReturnsCorrectAverage()
         {
-            List<int> nums = [1, 2];
+            List<Int32> nums = [1, 2];
             var avg = nums.Average();
             Assert.Equal(1.5, avg);
+        }
+        [Fact]
+        public void AverageInt32_WhenEmpty_ReturnsZero()
+        {
+            List<Int32> nums = [];
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
+        }
+        [Fact]
+        public void AverageInt64_WhenMultipleAndNonIntegerResult_ReturnsCorrectAverage()
+        {
+            List<Int64> nums = [1, 2];
+            var avg = nums.Average();
+            Assert.Equal(1.5, avg);
+        }
+        [Fact]
+        public void AverageInt64_WhenEmpty_ReturnsZero()
+        {
+            List<Int64> nums = [];
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
+        }
+        [Fact]
+        public void AverageSingle_WhenMultiple_ReturnsCorrectAverage()
+        {
+            List<Single> nums = [1, 2];
+            var avg = nums.Average();
+            Assert.Equal(1.5, avg);
+        }
+        [Fact]
+        public void AverageSingle_WhenEmpty_ReturnsZero()
+        {
+            List<Single> nums = [];
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
+        }
+        [Fact]
+        public void AverageDouble_WhenMultiple_ReturnsCorrectAverage()
+        {
+            List<Double> nums = [1, 2.5];
+            var avg = nums.Average();
+            Assert.Equal(1.75, avg);
+        }
+        [Fact]
+        public void AverageDouble_WhenOverflow_ReturnsInfinity()
+        {
+            List<Double> nums = [Double.MaxValue, Double.MaxValue];
+            var avg = nums.Average();
+            Assert.Equal(Double.PositiveInfinity, avg);
+        }
+        [Fact]
+        public void AverageDouble_WhenEmpty_ReturnsZero()
+        {
+            List<Double> nums = [];
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
+        }
+        [Fact]
+        public void AverageDecimal_WhenMultiple_ReturnsCorrectAverage()
+        {
+            List<Decimal> nums = [1, 2.5m];
+            var avg = nums.Average();
+            Assert.Equal(1.75m, avg);
+        }
+        [Fact]
+        public void AverageDecimal_WhenEmpty_ReturnsZero()
+        {
+            List<Decimal> nums = [];
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
         }
 
         [Fact]
