@@ -9,7 +9,7 @@ Gradually making my own LINQ library from "scratch"
 - [ ] AggregateBy<TSource,TKey,TAccumulate>(IEnumerable<TSource>, Func<TSource, TKey>, TAccumulate, Func<TAccumulate,TSource,TAccumulate>, IEqualityComparer<TKey>) 	
 - [x] All<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>) 	
 - [x] Any<TSource>(IEnumerable<TSource>, Func<TSource,Boolean>) 	
-- [ ] Any<TSource>(IEnumerable<TSource>) 	
+- [x] Any<TSource>(IEnumerable<TSource>) 	
 - [ ] Append<TSource>(IEnumerable<TSource>, TSource) 	
 - [ ] AsEnumerable<TSource>(IEnumerable<TSource>) 	
 - [ ] Average(IEnumerable<Decimal>) 	
