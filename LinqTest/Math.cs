@@ -201,11 +201,31 @@ namespace LinqTest
             }
             return max;
         }
+        public static Int32? Max(this IEnumerable<Int32?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Int32? max = collection.FirstOrDefault();
+            foreach (Int32? num in collection)
+            {
+                if (num > max) max = num;
+            }
+            return max;
+        }
         public static Int64? Max(this IEnumerable<Int64> collection)
         {
             if (collection.Count() == 0) return null;
             Int64 max = Int64.MinValue;
             foreach (Int64 num in collection)
+            {
+                if (num > max) max = num;
+            }
+            return max;
+        }
+        public static Int64? Max(this IEnumerable<Int64?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Int64? max = collection.FirstOrDefault();
+            foreach (Int64? num in collection)
             {
                 if (num > max) max = num;
             }
@@ -221,6 +241,16 @@ namespace LinqTest
             }
             return max;
         }
+        public static Single? Max(this IEnumerable<Single?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Single? max = collection.FirstOrDefault();
+            foreach (Single? num in collection)
+            {
+                if (num > max) max = num;
+            }
+            return max;
+        }
         public static Double? Max(this IEnumerable<Double> collection)
         {
             if (collection.Count() == 0) return null;
@@ -231,11 +261,31 @@ namespace LinqTest
             }
             return max;
         }
+        public static Double? Max(this IEnumerable<Double?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Double? max = collection.FirstOrDefault();
+            foreach (Double? num in collection)
+            {
+                if (num > max) max = num;
+            }
+            return max;
+        }
         public static Decimal? Max(this IEnumerable<Decimal> collection)
         {
             if (collection.Count() == 0) return null;
             Decimal max = Decimal.MinValue;
             foreach (Decimal num in collection)
+            {
+                if (num > max) max = num;
+            }
+            return max;
+        }
+        public static Decimal? Max(this IEnumerable<Decimal?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Decimal? max = collection.FirstOrDefault();
+            foreach (Decimal? num in collection)
             {
                 if (num > max) max = num;
             }
