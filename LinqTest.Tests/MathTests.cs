@@ -241,6 +241,37 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void MinInt32N_WhenNullCollection_ThrowsArgumentNullException()
+        {
+            List<Int32?> ls = null;
+            var caughtException = Assert.Throws<ArgumentNullException>(() => ls!.Min());
+        }
+
+        [Fact]
+        public void MinInt32N_WhenEmpty_ReturnsNull()
+        {
+            List<Int32?> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinInt32N_WhenAllNull_ReturnsNull()
+        {
+            List<Int32?> ls = [null, null];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinInt32N_WhenNotEmpty_ReturnsSmallestValue()
+        {
+            List<Int32?> ls = [1, null, 13, 4];
+            var min = ls.Min();
+            Assert.Equal(1, min);
+        }
+
+        [Fact]
         public void MinInt64_WhenEmpty_ReturnsNull()
         {
             List<Int64> ls = [];
@@ -254,6 +285,37 @@ namespace LinqTest.Tests
             List<Int64> ls = [1, 2, -3, 4];
             var min = ls.Min();
             Assert.Equal(-3, min);
+        }
+
+        [Fact]
+        public void MinInt64N_WhenNullCollection_ThrowsArgumentNullException()
+        {
+            List<Int64?> ls = null;
+            var caughtException = Assert.Throws<ArgumentNullException>(() => ls!.Min());
+        }
+
+        [Fact]
+        public void MinInt64N_WhenEmpty_ReturnsNull()
+        {
+            List<Int64?> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinInt64N_WhenAllNull_ReturnsNull()
+        {
+            List<Int64?> ls = [null, null];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinInt64N_WhenNotEmpty_ReturnsSmallestValue()
+        {
+            List<Int64?> ls = [1, null, 13, 4];
+            var min = ls.Min();
+            Assert.Equal(1, min);
         }
 
         [Fact]
@@ -273,6 +335,37 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void MinSingleN_WhenNullCollection_ThrowsArgumentNullException()
+        {
+            List<Single?> ls = null;
+            var caughtException = Assert.Throws<ArgumentNullException>(() => ls!.Min());
+        }
+
+        [Fact]
+        public void MinSingleN_WhenEmpty_ReturnsNull()
+        {
+            List<Single?> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinSingleN_WhenAllNull_ReturnsNull()
+        {
+            List<Single?> ls = [null, null];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinSingleN_WhenNotEmpty_ReturnsSmallestValue()
+        {
+            List<Single?> ls = [1, null, 13, 4];
+            var min = ls.Min();
+            Assert.Equal(1, min);
+        }
+
+        [Fact]
         public void MinDouble_WhenEmpty_ReturnsNull()
         {
             List<Double> ls = [];
@@ -289,6 +382,37 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void MinDoubleN_WhenNullCollection_ThrowsArgumentNullException()
+        {
+            List<Double?> ls = null;
+            var caughtException = Assert.Throws<ArgumentNullException>(() => ls!.Min());
+        }
+
+        [Fact]
+        public void MinDoubleN_WhenEmpty_ReturnsNull()
+        {
+            List<Double?> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinDoubleN_WhenAllNull_ReturnsNull()
+        {
+            List<Double?> ls = [null, null];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinDoubleN_WhenNotEmpty_ReturnsSmallestValue()
+        {
+            List<Double?> ls = [1, null, 13, 4.5];
+            var min = ls.Min();
+            Assert.Equal(1, min);
+        }
+
+        [Fact]
         public void MinDecimal_WhenEmpty_ReturnsNull()
         {
             List<Decimal> ls = [];
@@ -302,6 +426,37 @@ namespace LinqTest.Tests
             List<Decimal> ls = [1, 2.5m, -3, 4];
             var min = ls.Min();
             Assert.Equal(-3, min);
+        }
+
+        [Fact]
+        public void MinDecimalN_WhenNullCollection_ThrowsArgumentNullException()
+        {
+            List<Decimal?> ls = null;
+            var caughtException = Assert.Throws<ArgumentNullException>(() => ls!.Min());
+        }
+
+        [Fact]
+        public void MinDecimalN_WhenEmpty_ReturnsNull()
+        {
+            List<Decimal?> ls = [];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinDecimalN_WhenAllNull_ReturnsNull()
+        {
+            List<Decimal?> ls = [null, null];
+            var min = ls.Min();
+            Assert.Null(min);
+        }
+
+        [Fact]
+        public void MinDecimalN_WhenNotEmpty_ReturnsSmallestValue()
+        {
+            List<Decimal?> ls = [1, null, 13, 4.5m];
+            var min = ls.Min();
+            Assert.Equal(1, min);
         }
 
         [Fact]

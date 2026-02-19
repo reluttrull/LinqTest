@@ -139,6 +139,16 @@ namespace LinqTest
             }
             return min;
         }
+        public static Int32? Min(this IEnumerable<Int32?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Int32? min = collection.FirstOrDefault();
+            foreach (Int32? num in collection)
+            {
+                if (min is null || num < min) min = num;
+            }
+            return min;
+        }
         public static Int64? Min(this IEnumerable<Int64> collection)
         {
             if (collection.Count() == 0) return null;
@@ -146,6 +156,16 @@ namespace LinqTest
             foreach (Int64 num in collection)
             {
                 if (num < min) min = num;
+            }
+            return min;
+        }
+        public static Int64? Min(this IEnumerable<Int64?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Int64? min = collection.FirstOrDefault();
+            foreach (Int64? num in collection)
+            {
+                if (min is null || num < min) min = num;
             }
             return min;
         }
@@ -159,6 +179,16 @@ namespace LinqTest
             }
             return min;
         }
+        public static Single? Min(this IEnumerable<Single?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Single? min = collection.FirstOrDefault();
+            foreach (Single? num in collection)
+            {
+                if (min is null || num < min) min = num;
+            }
+            return min;
+        }
         public static Double? Min(this IEnumerable<Double> collection)
         {
             if (collection.Count() == 0) return null;
@@ -169,6 +199,16 @@ namespace LinqTest
             }
             return min;
         }
+        public static Double? Min(this IEnumerable<Double?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Double? min = collection.FirstOrDefault();
+            foreach (Double? num in collection)
+            {
+                if (min is null || num < min) min = num;
+            }
+            return min;
+        }
         public static Decimal? Min(this IEnumerable<Decimal> collection)
         {
             if (collection.Count() == 0) return null;
@@ -176,6 +216,16 @@ namespace LinqTest
             foreach (Decimal num in collection)
             {
                 if (num < min) min = num;
+            }
+            return min;
+        }
+        public static Decimal? Min(this IEnumerable<Decimal?> collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            Decimal? min = collection.FirstOrDefault();
+            foreach (Decimal? num in collection)
+            {
+                if (min is null || num < min) min = num;
             }
             return min;
         }
@@ -207,7 +257,7 @@ namespace LinqTest
             Int32? max = collection.FirstOrDefault();
             foreach (Int32? num in collection)
             {
-                if (num > max) max = num;
+                if (max is null || num > max) max = num;
             }
             return max;
         }
@@ -227,7 +277,7 @@ namespace LinqTest
             Int64? max = collection.FirstOrDefault();
             foreach (Int64? num in collection)
             {
-                if (num > max) max = num;
+                if (max is null || num > max) max = num;
             }
             return max;
         }
@@ -247,7 +297,7 @@ namespace LinqTest
             Single? max = collection.FirstOrDefault();
             foreach (Single? num in collection)
             {
-                if (num > max) max = num;
+                if (max is null || num > max) max = num;
             }
             return max;
         }
@@ -267,7 +317,7 @@ namespace LinqTest
             Double? max = collection.FirstOrDefault();
             foreach (Double? num in collection)
             {
-                if (num > max) max = num;
+                if (max is null || num > max) max = num;
             }
             return max;
         }
@@ -287,7 +337,7 @@ namespace LinqTest
             Decimal? max = collection.FirstOrDefault();
             foreach (Decimal? num in collection)
             {
-                if (num > max) max = num;
+                if (max is null || num > max) max = num;
             }
             return max;
         }
