@@ -137,6 +137,13 @@ namespace LinqTest.Tests
             Assert.Equal(0, avg);
         }
         [Fact]
+        public void AverageInt32_WhenNull_ReturnsZero()
+        {
+            List<Int32> nums = null;
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
+        }
+        [Fact]
         public void AverageInt64_WhenMultipleAndNonIntegerResult_ReturnsCorrectAverage()
         {
             List<Int64> nums = [1, 2];
@@ -151,6 +158,13 @@ namespace LinqTest.Tests
             Assert.Equal(0, avg);
         }
         [Fact]
+        public void AverageInt64_WhenNull_ReturnsZero()
+        {
+            List<Int64> nums = null;
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
+        }
+        [Fact]
         public void AverageSingle_WhenMultiple_ReturnsCorrectAverage()
         {
             List<Single> nums = [1, 2];
@@ -161,6 +175,13 @@ namespace LinqTest.Tests
         public void AverageSingle_WhenEmpty_ReturnsZero()
         {
             List<Single> nums = [];
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
+        }
+        [Fact]
+        public void AverageSingle_WhenNull_ReturnsZero()
+        {
+            List<Single> nums = null;
             var avg = nums.Average();
             Assert.Equal(0, avg);
         }
@@ -186,6 +207,13 @@ namespace LinqTest.Tests
             Assert.Equal(0, avg);
         }
         [Fact]
+        public void AverageDouble_WhenNull_ReturnsZero()
+        {
+            List<Double> nums = null;
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
+        }
+        [Fact]
         public void AverageDecimal_WhenMultiple_ReturnsCorrectAverage()
         {
             List<Decimal> nums = [1, 2.5m];
@@ -196,6 +224,13 @@ namespace LinqTest.Tests
         public void AverageDecimal_WhenEmpty_ReturnsZero()
         {
             List<Decimal> nums = [];
+            var avg = nums.Average();
+            Assert.Equal(0, avg);
+        }
+        [Fact]
+        public void AverageDecimal_WhenNull_ReturnsZero()
+        {
+            List<Decimal> nums = null;
             var avg = nums.Average();
             Assert.Equal(0, avg);
         }

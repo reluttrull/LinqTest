@@ -102,6 +102,30 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void FirstOrDefaultWDef_WhenCollectionEmpty_ReturnsDefault()
+        {
+            List<string> ls = [];
+            var first = ls.FirstOrDefault("default");
+            Assert.Equal("default", first);
+        }
+
+        [Fact]
+        public void FirstOrDefaultWDef_WhenCollectionNotEmpty_ReturnsFirstItem()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var first = ls.FirstOrDefault(-1);
+            Assert.Equal(1, first);
+        }
+
+        [Fact]
+        public void FirstOrDefaultWDef_WhenPredicatePassedIn_AppliesFilterFirst()
+        {
+            List<int> ls = [1, 2, 3, 4, 5];
+            var first = ls.FirstOrDefault(x => x > 2, -1);
+            Assert.Equal(3, first);
+        }
+
+        [Fact]
         public void Single_WhenMultipleMatches_ThrowsException()
         {
             List<string> ls = ["abc", "def", "abc"];

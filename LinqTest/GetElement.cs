@@ -53,10 +53,21 @@ namespace LinqTest
             return collection.Where(predicate).First();
         }
 
+        public static T? FirstOrDefault<T>(this IEnumerable<T> collection, T defaultValue)
+        {
+            if (collection.Count() == 0) return defaultValue;
+            return collection.ElementAt(0);
+        }
+
         public static T? FirstOrDefault<T>(this IEnumerable<T> collection)
         {
             if (collection.Count() == 0) return default(T);
             return collection.ElementAt(0);
+        }
+
+        public static T? FirstOrDefault<T>(this IEnumerable<T> collection, Func<T, bool> predicate, T defaultValue)
+        {
+            return collection.Where(predicate).FirstOrDefault(defaultValue);
         }
 
         public static T? FirstOrDefault<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
