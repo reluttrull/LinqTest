@@ -511,6 +511,64 @@ namespace LinqTest.Tests
         }
 
         [Fact]
+        public void MinSelectorInt32_WhenNullSource_ThrowsException()
+        {
+            List<string> ls = null;
+            var caughtException = Assert.Throws<ArgumentNullException>(() => ls!.Min(s => s.Length));
+        }
+
+        [Fact]
+        public void MinSelectorInt32_WhenNullSelector_ThrowsException()
+        {
+            List<string> ls = ["asdf", "jkl;bfbxvbcxbvc", "1"];
+            var caughtException = Assert.Throws<ArgumentNullException>(() => ls.Min(null));
+        }
+
+        [Fact]
+        public void MinSelectorInt32_WhenEmptySource_ThrowsException()
+        {
+            List<string> ls = [];
+            var caughtException = Assert.Throws<InvalidOperationException>(() => ls.Min(s => s.Length));
+        }
+
+        [Fact]
+        public void MinSelectorInt32_WhenObjectsInCollection_ReturnsCorrectMin()
+        {
+            List<string> ls = ["asdf", "jkl;bfbxvbcxbvc", "1"];
+            var min = ls.Min(s => s.Length);
+            Assert.Equal(1, min);
+        }
+
+        [Fact]
+        public void MinSelectorInt32N_WhenNullSource_ThrowsException()
+        {
+            List<string> ls = null;
+            var caughtException = Assert.Throws<ArgumentNullException>(() => ls!.Min(s => s.Length > 3 ? s.Length : null));
+        }
+
+        [Fact]
+        public void MinSelectorInt32N_WhenNullSelector_ThrowsException()
+        {
+            List<string> ls = ["asdf", "jkl;bfbxvbcxbvc", "1"];
+            var caughtException = Assert.Throws<ArgumentNullException>(() => ls.Min(null));
+        }
+
+        [Fact]
+        public void MinSelectorInt32N_WhenEmptySource_ThrowsException()
+        {
+            List<string> ls = [];
+            var caughtException = Assert.Throws<InvalidOperationException>(() => ls.Min(s => s.Length > 3 ? s.Length : null));
+        }
+
+        [Fact]
+        public void MinSelectorInt32N_WhenObjectsInCollection_ReturnsCorrectMin()
+        {
+            List<string> ls = ["jkl;bfbxvbcxbvc", "asdf", "1"];
+            var min = ls.Min(s => s.Length > 3 ? s.Length : null);
+            Assert.Equal(4, min);
+        }
+
+        [Fact]
         public void MaxInt32_WhenEmpty_ReturnsNull()
         {
             List<Int32> ls = [];

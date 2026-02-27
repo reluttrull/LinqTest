@@ -229,6 +229,32 @@ namespace LinqTest
             }
             return min;
         }
+        public static Int32 Min<T>(this IEnumerable<T> collection, Func<T,Int32> selector)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            ArgumentNullException.ThrowIfNull(selector);
+            if (collection.Count() == 0) throw new InvalidOperationException();
+            Int32 min = Int32.MaxValue;
+            foreach (T obj in collection)
+            {
+                Int32 val = selector(obj);
+                if (val < min) min = val;
+            }
+            return min;
+        }
+        public static Int32? Min<T>(this IEnumerable<T> collection, Func<T, Int32?> selector)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+            ArgumentNullException.ThrowIfNull(selector);
+            if (collection.Count() == 0) throw new InvalidOperationException();
+            Int32? min = selector(collection.First());
+            foreach (T obj in collection)
+            {
+                Int32? val = selector(obj);
+                if (val < min) min = val;
+            }
+            return min;
+        }
         public static T? Min<T>(this IEnumerable<T> collection)
             where T : IComparable
         {
